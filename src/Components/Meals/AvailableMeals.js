@@ -1,9 +1,15 @@
 import { DUMMY_MEALS } from '../../DummyData/dummayData';
+import classes from './AvailableMeals.module.css';
 
 const AvailableMeals = () => {
-  const mealsList = DUMMY_MEALS.map((meal) => <li>{meal.name}</li>);
-  console.log(mealsList);
-  return <>{mealsList}</>;
+  const mealsList = (
+    <ul>
+      {DUMMY_MEALS.map((meal) => (
+        <li>{meal.name}</li>
+      ))}
+    </ul>
+  );
+  return <section className={classes.meals}>{mealsList}</section>;
 };
 
 export default AvailableMeals;

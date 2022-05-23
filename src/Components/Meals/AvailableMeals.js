@@ -1,5 +1,6 @@
 import { DUMMY_MEALS } from '../../DummyData/dummayData';
 import classes from './AvailableMeals.module.css';
+import Card from '../UI/Card';
 
 const AvailableMeals = () => {
   const mealsList = (
@@ -9,7 +10,11 @@ const AvailableMeals = () => {
       ))}
     </ul>
   );
-  return <section className={classes.meals}>{mealsList}</section>;
+  return (
+    <section className={classes.meals}>
+      <Card>{mealsList}</Card>
+    </section>
+  );
 };
 
 export default AvailableMeals;

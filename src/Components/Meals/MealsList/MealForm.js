@@ -1,8 +1,9 @@
 import Input from '../../UI/Input';
+import classes from './MealForm.module.css';
 
 const MealForm = (props) => {
   return (
-    <>
+    <form className={classes.form}>
       <Input
         label="Amount"
         input={{
@@ -14,7 +15,8 @@ const MealForm = (props) => {
           defaultValue: '1',
         }}
       />
-    </>
+      <button>+Add</button>
+    </form>
   );
 };
 

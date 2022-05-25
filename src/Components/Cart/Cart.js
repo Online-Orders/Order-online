@@ -1,3 +1,5 @@
+import CartItem from './CartItem';
+
 const Cart = () => {
   const addedToCart = [
     {
@@ -7,7 +9,19 @@ const Cart = () => {
       qtyAdded: 2,
     },
   ];
-  const cartItems = addedToCart.map((item) => item.name);
+  const cartItems = (
+    <ul>
+      {addedToCart.map((item) => (
+        <CartItem
+          id={item.id}
+          key={item.id}
+          name={item.name}
+          price={item.price}
+          qtyAdded={item.qtyAdded}
+        />
+      ))}
+    </ul>
+  );
   return <>{cartItems}</>;
 };
 

@@ -1,4 +1,5 @@
 import CartItem from './CartItem';
+import classes from './Cart.module.css';
 
 const Cart = () => {
   const addedToCart = [
@@ -10,7 +11,7 @@ const Cart = () => {
     },
   ];
   const cartItems = (
-    <ul>
+    <ul className={classes['cart-items']}>
       {addedToCart.map((item) => (
         <CartItem
           id={item.id}
@@ -22,7 +23,19 @@ const Cart = () => {
       ))}
     </ul>
   );
-  return <>{cartItems}</>;
+  return (
+    <>
+      {cartItems}
+      <div className={classes.total}>
+        <span>Total Amount</span>
+        <span>40.50</span>
+      </div>
+      <div className={classes.actions}>
+        <button>Close</button>
+        <button>Order</button>
+      </div>
+    </>
+  );
 };
 
 export default Cart;

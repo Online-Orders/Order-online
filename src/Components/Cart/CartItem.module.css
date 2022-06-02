@@ -1,0 +1,63 @@
+.listItem{
+    border-bottom: 2px solid #8a2b06;
+    margin-bottom: 20px;
+
+
+
+}
+
+ li  {
+    list-style-type: none;
+}
+
+.listItem h3 {
+    font-size:20px;
+    color: #111;
+    margin-bottom: 10px;
+    text-transform:capitalize
+}
+
+.listItem .price {
+    color: #8a2b06;
+    font-weight: bold;
+}
+
+.qtyBox {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 8px; 
+    border: 2px solid lightgray;
+    border-radius: 5px;
+}
+
+.listItem .price-qty {
+    max-width: 33%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    gap: 30px;
+    border: 2px solid red;
+}
+
+.cartFlexbox {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.btnAction {
+    
+
+}
+
+.btn {
+    margin: 5px;
+    color:#8a2b06;
+    padding: 2px 12px;
+    background-color: #fff;
+    border-color: #8a2b06;
+    border-radius:5px
+
+
+}
+

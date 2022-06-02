@@ -1,8 +1,20 @@
+import classes from './CartItem.module.css';
+
 const CartItem = (props) => {
+  const itemPrice = `$${props.price}`;
   return (
-    <li>
+    <li className={classes.listItem}>
       <h3>{props.name}</h3>
-      <span>name</span>
+      <div className={classes.cartFlexbox}>
+        <div className={classes['price-qty']}>
+          <h5 className={classes.price}>{itemPrice}</h5>
+          <span className={classes.qtyBox}>x{props.qtyAdded}</span>
+        </div>
+        <div className={classes.btnAction}>
+          <button className={classes.btn}>+</button>
+          <button className={classes.btn}>-</button>
+        </div>
+      </div>
     </li>
   );
 };

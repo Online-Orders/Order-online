@@ -10,6 +10,12 @@ const Cart = () => {
       price: 22.99,
       qtyAdded: 2,
     },
+    {
+      id: '2',
+      name: 'Schnitzel',
+      price: 16.5,
+      qtyAdded: 5,
+    },
   ];
   const cartItems = (
     <ul className={classes['cart-items']}>

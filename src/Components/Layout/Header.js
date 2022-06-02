@@ -7,7 +7,7 @@ const Header = (props) => {
     <>
       <nav className={classes.header}>
         <h2>OrderOnline</h2>
-        <HeaderCartButton />
+        <HeaderCartButton showModal={props.handleModalIsShown} />
       </nav>
       <div className={classes['main-image']}>
         <img src={mealImage} alt="delicious food" />

@@ -4,7 +4,7 @@ import React from 'react';
 // addItem and removeItem function is just the pointer
 const CartContext = React.createContext({
   items: [],
-  total: 0,
+  totalAmount: 0,
   addItem: (item) => {},
   removeItem: (id) => {},
 });

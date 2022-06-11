@@ -37,7 +37,6 @@ const MealForm = (props) => {
     event.preventDefault();
     const qtyAdded = qtyRef.current.value;
     const qtyAddedNumber = +qtyAdded;
-    console.log(qtyAddedNumber);
     props.handleItemQty(qtyAddedNumber);
   };
 

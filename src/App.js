@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './Components/Layout/Header';
 import Meals from './Components/Meals/Meals';
 import Cart from './Components/Cart/Cart';
+import CartProvider from './Store/CartProvider';
 
 function App() {
   const [modalIsShown, setModalIsShown] = useState(false);
@@ -16,11 +17,11 @@ function App() {
     setModalIsShown(false);
   };
   return (
-    <div>
+    <CartProvider>
       {!modalIsShown ? '' : <Cart hideModal={modalIsHidden} />}
       <Header handleModalIsShown={modalIsVisible} />
       <Meals />
-    </div>
+    </CartProvider>
   );
 }
 

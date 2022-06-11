@@ -10,7 +10,6 @@ const MealList = (props) => {
   const ctx = useContext(CartContext);
   // object destructuring to pull addItem function from the ctx.
   const { addItem } = ctx;
-
   //
   const addedItem = (qty) => {
     // Create a item added object and pass it the addItem function, which updates the item added in the cart
@@ -21,7 +20,6 @@ const MealList = (props) => {
       description: props.description,
       qty: qty,
     };
-    console.log(addedItem);
     addItem(addedItem);
   };
   return (

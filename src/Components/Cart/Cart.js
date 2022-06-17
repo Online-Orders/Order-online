@@ -42,6 +42,9 @@ const Cart = (props) => {
   // helper to convert the total amount to fixed two decimal
   const total = `$${totalAmount.toFixed(2)}`;
 
+  // checking if any item is added to the cart. This will return true or false
+  const cartHasItem = items.length > 0;
+
   return (
     <Modal onClose={props.hideModal}>
       {cartItems}
@@ -51,7 +54,8 @@ const Cart = (props) => {
       </div>
       <div className={classes.actions}>
         <button onClick={props.hideModal}>Close</button>
-        <button>Order</button>
+        {/* ternary operator to check if cartHasItem is true or false and only show Order button if it is true */}
+        {cartHasItem ? <button>Order</button> : ''}
       </div>
     </Modal>
   );

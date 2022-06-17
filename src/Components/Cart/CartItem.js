@@ -8,7 +8,7 @@ const CartItem = (props) => {
       <div className={classes.cartFlexbox}>
         <div className={classes['price-qty']}>
           <h5 className={classes.price}>{itemPrice}</h5>
-          <span className={classes.qtyBox}>x{props.qtyAdded}</span>
+          <span className={classes.qtyBox}>x {props.qtyAdded}</span>
         </div>
         <div className={classes.btnAction}>
           <button className={classes.btn}>+</button>

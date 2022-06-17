@@ -35,9 +35,14 @@ const MealForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const qtyAdded = qtyRef.current.value;
     const qtyAddedNumber = +qtyAdded;
+
     props.handleItemQty(qtyAddedNumber);
+
+    // set the form value to initial state of "1" after form is submitted
+    qtyRef.current.value = '1';
   };
 
   return (

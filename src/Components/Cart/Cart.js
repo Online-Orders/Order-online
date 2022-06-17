@@ -8,29 +8,32 @@ const Cart = (props) => {
   const ctx = useContext(CartContext);
   const { items, totalAmount } = ctx;
 
-  const addedToCart = [
-    {
-      id: '1',
-      name: 'sushi',
-      price: 22.99,
-      qtyAdded: 2,
-    },
-    {
-      id: '2',
-      name: 'Schnitzel',
-      price: 16.5,
-      qtyAdded: 5,
-    },
-  ];
+  // Dummy data used to show cart items
+
+  // const addedToCart = [
+  //   {
+  //     id: '1',
+  //     name: 'sushi',
+  //     price: 22.99,
+  //     qtyAdded: 2,
+  //   },
+  //   {
+  //     id: '2',
+  //     name: 'Schnitzel',
+  //     price: 16.5,
+  //     qtyAdded: 5,
+  //   },
+  // ];
+
   const cartItems = (
     <ul className={classes['cart-items']}>
-      {addedToCart.map((item) => (
+      {items.map((item) => (
         <CartItem
           id={item.id}
           key={item.id}
           name={item.name}
           price={item.price}
-          qtyAdded={item.qtyAdded}
+          qtyAdded={item.qty}
         />
       ))}
     </ul>

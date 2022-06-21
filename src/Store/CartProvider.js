@@ -28,7 +28,7 @@ const cartReducer = (state, action) => {
     const existingItem = state.items[existingItemIndex];
 
     // creating global variables so that it can be available and be updated inside the block.
-    var updatedItems;
+    let updatedItems;
 
     // check if item alreadt exist in the cart
     if (existingItem) {
@@ -56,6 +56,40 @@ const cartReducer = (state, action) => {
     };
   }
 
+  if (action.type === 'REMOVE') {
+    // finding item in the cart which "id" is same as that of send by the dispatch
+    const removedItem = state.items.find((item) => item.id === action.id);
+
+    // updating the total amount by subtracting from the actual price of the item that was removed
+    const updatedAmount = state.totalAmount - removedItem.price;
+
+    // to update the items in the cart when item is removed
+    const existingItemIndex = state.items.findIndex(
+      (item) => item.id === action.id
+    );
+
+    const existingItem = state.items[existingItemIndex];
+
+    let updatedItems;
+
+    // when the existing item in the cart that is being removed has a qty of 1, the whole item will be removed from the cart
+    if (existingItem.qty === 1) {
+      updatedItems = state.items.filter((item) => item.id !== action.id);
+    }
+
+    // // when the existing item in the cart that is being removed has a qty of more then 1, only the quantity of that item will be updated by subtracting the qty by 1, everytime it is reduced.
+    if (existingItem.qty > 1) {
+      const updatedItem = { ...existingItem, qty: existingItem.qty - 1 };
+      updatedItems = [...state.items];
+      updatedItems[existingItemIndex] = updatedItem;
+    }
+
+    return {
+      totalAmount: updatedAmount,
+      items: updatedItems,
+    };
+  }
+
   return {
     initialState,
   };
@@ -75,7 +109,9 @@ const CartProvider = (props) => {
   };
 
   //removes item from the cart
-  const removeCartItemHandler = (id) => {};
+  const removeCartItemHandler = (id) => {
+    dispatchCart({ type: 'REMOVE', id: id });
+  };
 
   // updating value of the provider with the current state
   const cartContext = {

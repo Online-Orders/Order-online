@@ -1,6 +1,11 @@
+import CartContext from '../../Store/CartContext';
+import { useContext } from 'react';
 import classes from './CartItem.module.css';
 
 const CartItem = (props) => {
+  const ctx = useContext(CartContext);
+  // got removeItem from the context provider to remove the item from the cart.
+  const { removeItem } = ctx;
   const itemPrice = `$${props.price}`;
   return (
     <li className={classes.listItem}>
@@ -12,7 +17,11 @@ const CartItem = (props) => {
         </div>
         <div className={classes.btnAction}>
           <button className={classes.btn}>+</button>
-          <button className={classes.btn}>-</button>
+
+          {/* onClick removeItem is called and passed id to remove the item */}
+          <button className={classes.btn} onClick={() => removeItem(props.id)}>
+            -
+          </button>
         </div>
       </div>
     </li>

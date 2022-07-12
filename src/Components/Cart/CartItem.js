@@ -16,7 +16,9 @@ const CartItem = (props) => {
           <span className={classes.qtyBox}>x {props.qtyAdded}</span>
         </div>
         <div className={classes.btnAction}>
-          <button className={classes.btn}>+</button>
+          <button className={classes.btn} onClick={props.addItemToCart}>
+            +
+          </button>
 
           {/* onClick removeItem is called and passed id to remove the item */}
           <button className={classes.btn} onClick={() => removeItem(props.id)}>

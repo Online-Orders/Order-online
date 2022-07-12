@@ -24,6 +24,10 @@ const Cart = (props) => {
   //     qtyAdded: 5,
   //   },
   // ];
+  const addItemToCart = (item) => {
+    const updatedItem = { ...item, qty: 1 };
+    ctx.addItem(updatedItem);
+  };
 
   const cartItems = (
     <ul className={classes['cart-items']}>
@@ -34,6 +38,7 @@ const Cart = (props) => {
           name={item.name}
           price={item.price}
           qtyAdded={item.qty}
+          addItemToCart={() => addItemToCart(item)}
         />
       ))}
     </ul>

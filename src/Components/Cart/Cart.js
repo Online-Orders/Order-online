@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import CartContext from '../../Store/CartContext';
 import CartItem from './CartItem';
+import CheckoutForm from './CheckoutForm';
 import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 
@@ -57,6 +58,7 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{total}</span>
       </div>
+      <CheckoutForm />
       <div className={classes.actions}>
         <button onClick={props.hideModal}>Close</button>
         {/* ternary operator to check if cartHasItem is true or false and only show Order button if it is true */}

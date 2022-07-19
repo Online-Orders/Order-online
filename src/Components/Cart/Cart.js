@@ -6,16 +6,15 @@ import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 
 const Cart = (props) => {
+  // state to manage, if order button is clicked
   const [orderButtonIsClicked, setOrderButtonIsClicked] = useState(false);
   const ctx = useContext(CartContext);
   const { items, totalAmount } = ctx;
 
-  //
+  // Will change to true when order button is clicked. This function is passed to order button.
   const showForm = () => {
     setOrderButtonIsClicked(true);
   };
-
-  console.log(orderButtonIsClicked);
 
   // Dummy data used to show cart items
 
@@ -33,11 +32,14 @@ const Cart = (props) => {
   //     qtyAdded: 5,
   //   },
   // ];
+
+  // Updates the item quantity added from the cart. It updates the quantity by one.
   const addItemToCart = (item) => {
     const updatedItem = { ...item, qty: 1 };
     ctx.addItem(updatedItem);
   };
 
+  // each items added to cart are looped and passed to the CartItem Component, which is then remdered in the Cart.
   const cartItems = (
     <ul className={classes['cart-items']}>
       {items.map((item) => (
@@ -66,6 +68,7 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{total}</span>
       </div>
+      {/* using ternary opertor to check if order button is clicked, and if it true show the checkout form and hide the order and cancel button. */}
       {orderButtonIsClicked ? (
         <CheckoutForm hideModal={props.hideModal} />
       ) : (

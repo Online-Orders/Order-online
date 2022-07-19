@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import CartContext from '../../Store/CartContext';
 import CartItem from './CartItem';
 import CheckoutForm from './CheckoutForm';
@@ -6,8 +6,16 @@ import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 
 const Cart = (props) => {
+  const [orderButtonIsClicked, setOrderButtonIsClicked] = useState(false);
   const ctx = useContext(CartContext);
   const { items, totalAmount } = ctx;
+
+  //
+  const showForm = () => {
+    setOrderButtonIsClicked(true);
+  };
+
+  console.log(orderButtonIsClicked);
 
   // Dummy data used to show cart items
 
@@ -58,12 +66,15 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{total}</span>
       </div>
-      <CheckoutForm />
-      <div className={classes.actions}>
-        <button onClick={props.hideModal}>Close</button>
-        {/* ternary operator to check if cartHasItem is true or false and only show Order button if it is true */}
-        {cartHasItem ? <button>Order</button> : ''}
-      </div>
+      {orderButtonIsClicked ? (
+        <CheckoutForm hideModal={props.hideModal} />
+      ) : (
+        <div className={classes.actions}>
+          <button onClick={props.hideModal}>Close</button>
+          {/* ternary operator to check if cartHasItem is true or false and only show Order button if it is true */}
+          {cartHasItem ? <button onClick={showForm}>Order</button> : ''}
+        </div>
+      )}
     </Modal>
   );
 };

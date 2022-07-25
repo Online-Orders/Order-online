@@ -10,7 +10,6 @@
 
 .modal {
     height: auto;
-    overflow:auto;
     position: fixed;
     top: 15vh;
     left: 25%;
@@ -43,4 +42,11 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@media (max-width:768px){
+    .modal {
+        top:8vh
+    }
+
 }

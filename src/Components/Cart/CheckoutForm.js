@@ -1,40 +1,90 @@
+import { useState } from 'react';
+import CheckoutFormInput from '../UI/CheckoutFormInput';
 import classes from './CheckoutForm.module.css';
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
+  //initializing the initial state for all the form inputs in single object, so that multiple form inputs can be controlled. Intially it is set to empty string.
+  const [values, setValues] = useState({
+    username: '',
+    email: '',
+    birthday: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  // form attribues that will be passed to the CheckoutFormInput Component in the UI as props. The input field will be using these attributes to show the form input fields and its characteristics.
+  const inputs = [
+    {
+      id: 1,
+      name: 'username',
+      label: 'Username',
+      type: 'text',
+      placeholder: 'Username',
+    },
+    {
+      id: 2,
+      name: 'email',
+      type: 'email',
+      label: 'Email',
+      placeholder: 'Email',
+    },
+    {
+      id: 3,
+      name: 'birthday',
+      type: 'date',
+      label: 'Birthday',
+      placeholder: 'Birthday',
+    },
+    {
+      id: 4,
+      name: 'password',
+      type: 'password',
+      label: 'Password',
+      placeholder: 'Password',
+    },
+    {
+      id: 5,
+      name: 'confirmPassword',
+      type: 'password',
+      label: 'Confirm Password',
+      placeholder: 'Confirm Password',
+    },
+  ];
+
+  // In addition to getting value from the event.target we are also getting name of the target as well. This is important to manage the multiple field inputs with single handler.
+
+  // "name" and "value" is set as key value pair so that each value will have unique key. For example:  username will have seperate key as name and  values as a username. And finally state is updated using spread operator.
+  const onChange = (event) => {
+    const value = event.target.value;
+    setValues({
+      ...values,
+      [event.target.name]: value,
+    });
+  };
+
+  // handle data when form is submitted
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(values);
+  };
+
+  //  all the attribute for the form input is itreated from Inputs and passed to the CheckoutFormInput component, which is saved in variable formInputs.
+  const formInputs = inputs.map((input) => (
+    <CheckoutFormInput
+      key={input.id}
+      {...input}
+      onChange={onChange}
+      value={values[input.name]}
+    />
+  ));
+
   return (
-    <>
-      <h3>Plese enter your details.</h3>
-      <form>
-        <div className={classes['form-control']}>
-          <div className={classes.control}>
-            <label htmlFor="name">Your Name</label>
-            <input type="text" id="name" />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="street">Street</label>
-            <input type="text" id="street" />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="suburb">Suburb</label>
-            <input type="text" id="suburb" />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="state">State</label>
-            <input type="text" id="state" />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="post-code">Post Code</label>
-            <input type="text" id="post-code" />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="country">Country</label>
-            <input type="text" id="country" />
-          </div>
-        </div>
-        <button>Confirm</button>
-        <button>Cancel</button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit} className={classes.formStyle}>
+      {/* renders form Input fields */}
+      {formInputs}
+      <button>Confirm</button>
+      <button onClick={props.hideModal}>Cancel</button>
+    </form>
   );
 };
 

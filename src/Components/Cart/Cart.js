@@ -90,11 +90,7 @@ const Cart = (props) => {
   const helperClasses = orderButtonIsClicked ? `${classes.container}` : '';
 
   return (
-    <Modal
-      onClose={props.hideModal}
-      // orderButtonIsClicked state is passed to Modal so that styling is done depending on if checkout form is shown or hidden
-      // handleOrderButtonClicked={orderButtonIsClicked}/////////////////////
-    >
+    <Modal onClose={props.hideModal}>
       <div className={helperClasses}>
         <div className={classes.containerOne}>
           {cartItems}

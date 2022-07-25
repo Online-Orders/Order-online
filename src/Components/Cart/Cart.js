@@ -91,6 +91,9 @@ const Cart = (props) => {
 
   return (
     <Modal onClose={props.hideModal}>
+      {/* helperClasses is a container used to display cart Items and checkout form side by side as a flex container, when order button is clicked.
+    - this container has two divs inside it as flex items : containerOne and containerTwo
+     */}
       <div className={helperClasses}>
         <div className={classes.containerOne}>
           {cartItems}

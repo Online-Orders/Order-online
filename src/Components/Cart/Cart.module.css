@@ -23,6 +23,14 @@
   /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
 }
 
+@media (max-width:768px){
+  .container {
+    display: flex;
+    flex-direction: column;
+    
+  }
+}
+
 .total {
   display: flex;
   justify-content: space-between;

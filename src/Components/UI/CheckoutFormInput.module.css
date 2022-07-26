@@ -30,8 +30,14 @@ label {
 }
 
 /* checks error in the input field and shows error message if there is error */
-input:invalid ~ .errors {
+
+input:invalid[inputIsTouched="true"] {
+    border: 1px solid red;
+
+}
+input:invalid[inputIsTouched="true"] ~ .errors {
     display: block;
+    
 }
 
 @media(max-width:765px){

@@ -5,8 +5,8 @@ const CheckoutFormInput = (props) => {
   return (
     <div key={props.id} className={classes.formInput}>
       <label>{props.label}</label>
-
       <input onChange={onChange} {...props} />
+      <span className={classes.errors}>{props.errorMessage}</span>
     </div>
   );
 };

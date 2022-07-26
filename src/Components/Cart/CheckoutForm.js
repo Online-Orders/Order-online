@@ -17,37 +17,53 @@ const CheckoutForm = (props) => {
     {
       id: 1,
       name: 'username',
-      label: 'Username',
       type: 'text',
       placeholder: 'Username',
+      errorMessage:
+        'Username should be 3-16 characters and should not include any special characters!',
+      // regex to check validity of username
+      pattern: '^[a-zA-z0-9]{3,16}$',
+      required: true,
+      label: 'Username',
     },
     {
       id: 2,
       name: 'email',
       type: 'email',
-      label: 'Email',
       placeholder: 'Email',
+      errorMessage: 'It should be a valid email address!',
+      required: true,
+      label: 'Email',
     },
     {
       id: 3,
       name: 'birthday',
       type: 'date',
-      label: 'Birthday',
       placeholder: 'Birthday',
+      label: 'Birthday',
     },
     {
       id: 4,
       name: 'password',
       type: 'password',
-      label: 'Password',
       placeholder: 'Password',
+      errorMessage:
+        'Passoword should be 8-20 characters and should at least include one lowercase letter, one uppercase letter, one number and one special character!',
+      // regex to check validity of password
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      required: true,
+      label: 'Password',
     },
     {
       id: 5,
       name: 'confirmPassword',
       type: 'password',
-      label: 'Confirm Password',
       placeholder: 'Confirm Password',
+      errorMessage: "Passwords don't match!",
+      // will check if confirm password matches the actual typed password
+      pattern: values.password,
+      required: true,
+      label: 'Confirm Password',
     },
   ];
 

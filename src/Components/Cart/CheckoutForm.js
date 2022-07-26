@@ -79,11 +79,17 @@ const CheckoutForm = (props) => {
   ));
 
   return (
-    <form onSubmit={handleSubmit} className={classes.formStyle}>
+    <form
+      classname={classes.form}
+      onSubmit={handleSubmit}
+      className={classes.formStyle}
+    >
       {/* renders form Input fields */}
       {formInputs}
-      <button>Confirm</button>
-      <button onClick={props.hideModal}>Cancel</button>
+      <div className={classes.actions}>
+        <button>Confirm</button>
+        <button onClick={props.hideModal}>Cancel</button>
+      </div>
     </form>
   );
 };

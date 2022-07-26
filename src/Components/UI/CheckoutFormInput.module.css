@@ -21,6 +21,19 @@ label {
     
 }
 
+/* initially this class is hidden as display is set to none */
+.errors {
+    font-size: 12px;
+    padding-bottom: 2px;
+    color: red;
+    display: none;
+}
+
+/* checks error in the input field and shows error message if there is error */
+input:invalid ~ .errors {
+    display: block;
+}
+
 @media(max-width:765px){
     .formInput{
         margin:0

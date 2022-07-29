@@ -1,0 +1,42 @@
+
+.form {
+    display: flex;
+    justify-content:center;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    padding-right: 25px;
+}
+
+
+
+.actions button {
+    font: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #8a2b06;
+    padding: 0.3rem 1rem;
+    border-radius: 25px;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+
+.actions button:hover,
+.actions button:active {
+    background-color: #5a1a01;
+    border-color: #5a1a01;
+    color: white;
+}
+
+
+@media(max-width:765px){
+    .actions{
+        display:flex;
+        flex-direction: column;
+        padding-right: 25px;
+    }
+}
+

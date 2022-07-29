@@ -1,9 +1,6 @@
 .listItem{
     border-bottom: 2px solid #8a2b06;
     margin-bottom: 20px;
-
-
-
 }
 
  li  {
@@ -11,7 +8,7 @@
 }
 
 .listItem h3 {
-    font-size:20px;
+    font-size:15px;
     color: #111;
     margin-bottom: 10px;
     text-transform:capitalize
@@ -44,10 +41,7 @@
     margin-bottom: 20px;
 }
 
-.btnAction {
-    
 
-}
 
 .btn {
     margin: 5px;
@@ -58,5 +52,16 @@
     border-radius:5px
 
 
+}
+
+
+@media (max-width:765px){
+    .listItem{
+        margin-bottom: 6px;
+    }
+
+    .cartFlexbox{
+        margin-bottom: 10px;
+    }
 }
 

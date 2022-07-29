@@ -17,6 +17,7 @@ const Modal = (props) => {
         <Backdrop onCloseModal={props.onClose} />,
         ModalId
       )}
+
       {ReactDOM.createPortal(
         <ModalLayout>{props.children}</ModalLayout>,
         ModalId

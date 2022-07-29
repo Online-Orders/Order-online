@@ -3,7 +3,7 @@ import classes from './CheckoutFormInput.module.css';
 
 const CheckoutFormInput = (props) => {
   const [inputIsTouched, setInputIstouched] = useState(false);
-  const { onChange } = props;
+  const { onChange, errorMessage, ...propsInput } = props;
 
   // triggers when user looses focus from the input field and clickes somewhere else.
   const handleBlur = (event) => {
@@ -22,13 +22,14 @@ const CheckoutFormInput = (props) => {
       <label>{props.label}</label>
       <input
         onChange={onChange}
-        {...props}
+        {...propsInput}
         onBlur={handleBlur}
-        inputIsTouched={inputIsTouched.toString()}
+        //touched should be in lowercase, without any uppercase like touchedButton, otherwise will recieve error,
+        touched={inputIsTouched.toString()}
         // onFocus here will only trigger for confirm password
         onFocus={handleFocusOnConfirmPassword}
       />
-      <span className={classes.errors}>{props.errorMessage}</span>
+      <span className={classes.errors}>{errorMessage}</span>
     </div>
   );
 };

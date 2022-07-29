@@ -31,11 +31,11 @@ label {
 
 /* checks error in the input field and shows error message if there is error */
 
-input:invalid[inputIsTouched="true"] {
+input:invalid[touched="true"] {
     border: 1px solid red;
 
 }
-input:invalid[inputIsTouched="true"] ~ .errors {
+input:invalid[touched="true"] ~ .errors {
     display: block;
     
 }

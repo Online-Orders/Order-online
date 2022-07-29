@@ -1,6 +1,6 @@
 // import { DUMMY_MEALS } from '../../DummyData/dummayData';
 import classes from './AvailableMeals.module.css';
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import Card from '../UI/Card';
 import MealList from './MealsList/MealList';
 import { useEffect } from 'react';
@@ -10,13 +10,19 @@ const AvailableMeals = () => {
   const [allMeals, setMeals] = useState([]);
 
   // configuration for the get request send by this component
-  const config = {
-    url: 'https://order-online-a8c95-default-rtdb.firebaseio.com/meals.json',
-    method: 'get',
-  };
+  // useMemo is used so that when useHttp re-renders everytime this COnfig object, it is not taken as a differnt object, and will not re-evaluate again. This prevents from infinite loop. Objects in javascript are reference value, so each time react evalutes same Config object it will be different.
+  const config = useMemo(
+    () => ({
+      url: 'https://order-online-a8c95-default-rtdb.firebaseio.com/meals.json',
+      method: 'get',
+    }),
+    []
+  );
 
   // this function is called from the custom hook "useHttp" and mealData is passed. The recieved data is transformed then set to the allMeals state.
-  const transformData = (mealData) => {
+
+  // useCallback is used to prevent infinite loop, as fucntions in javascript are object.
+  const transformData = useCallback((mealData) => {
     const loadMeals = [];
     for (const key in mealData) {
       loadMeals.push({
@@ -27,7 +33,7 @@ const AvailableMeals = () => {
       });
     }
     setMeals(loadMeals);
-  };
+  }, []);
 
   // custom hook useHttp returns isLoading, hasError and sendRequest which is destructured here.
   // custom hook useHttp is expexting two arguments "config" and function "transformData"
@@ -38,10 +44,11 @@ const AvailableMeals = () => {
   } = useHttp(config, transformData);
 
   // useEffect is called after component first renders and sendRequest:fetchMeals is called inside it.
+  // fetchMeals is provided as a dependency, so that when only this function changes, useEffect will be called again.
 
   useEffect(() => {
     fetchMeals();
-  }, []);
+  }, [fetchMeals]);
 
   // if isLoading is true it returns something
   if (isLoading) {

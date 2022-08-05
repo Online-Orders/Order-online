@@ -3,7 +3,6 @@ import CheckoutFormInput from '../UI/CheckoutFormInput';
 import classes from './CheckoutForm.module.css';
 
 const CheckoutForm = (props) => {
-  console.log(classes);
   //initializing the initial state for all the form inputs in single object, so that multiple form inputs can be controlled. Intially it is set to empty string.
   const [values, setValues] = useState({
     username: '',
@@ -52,7 +51,7 @@ const CheckoutForm = (props) => {
         'Passoword should be 8-20 characters and should at least include one lowercase letter, one uppercase letter, one number and one special character!',
       // regex to check validity of password
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-      required: true,
+      // required: true,
       label: 'Password',
     },
     {
@@ -63,7 +62,7 @@ const CheckoutForm = (props) => {
       errorMessage: "Passwords don't match!",
       // will check if confirm password matches the actual typed password
       pattern: values.password,
-      required: true,
+      // required: true,
       label: 'Confirm Password',
     },
   ];
@@ -82,7 +81,12 @@ const CheckoutForm = (props) => {
   // handle data when form is submitted
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(values);
+    const userDetails = {
+      username: values.username,
+      email: values.email,
+      birthday: values.birthday,
+    };
+    props.onConfirm(userDetails);
   };
 
   //  all the attribute for the form input is itreated from Inputs and passed to the CheckoutFormInput component, which is saved in variable formInputs.

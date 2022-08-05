@@ -51,7 +51,7 @@ const CheckoutForm = (props) => {
         'Passoword should be 8-20 characters and should at least include one lowercase letter, one uppercase letter, one number and one special character!',
       // regex to check validity of password
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-      // required: true,
+      required: true,
       label: 'Password',
     },
     {
@@ -62,7 +62,7 @@ const CheckoutForm = (props) => {
       errorMessage: "Passwords don't match!",
       // will check if confirm password matches the actual typed password
       pattern: values.password,
-      // required: true,
+      required: true,
       label: 'Confirm Password',
     },
   ];

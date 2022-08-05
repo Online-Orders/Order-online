@@ -2,37 +2,66 @@ import { useContext, useState } from 'react';
 import CartContext from '../../Store/CartContext';
 import CartItem from './CartItem';
 import CheckoutForm from './CheckoutForm';
-import useHttp from '../../Hooks/use-http';
 import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
+import axios from 'axios';
 
 const Cart = (props) => {
+  // state when the form is in the process of submitting
+  const [formIsSubmitting, setFormIsSubmitting] = useState(false);
+
+  // state when the form is submitted.
+  const [formIsSubmitted, setFormIsSubmitted] = useState(false);
+
+  // when there is error after the form is submitted
+  const [error, setError] = useState('');
+
   // state to manage, if order button is clicked
   const [orderButtonIsClicked, setOrderButtonIsClicked] = useState(false);
   const ctx = useContext(CartContext);
-  const { items, totalAmount } = ctx;
+  const { items, totalAmount, emptyCart } = ctx;
+
+  const url =
+    'https://order-online-a8c95-default-rtdb.firebaseio.com/orders.json';
+
+  //post request with async await and axios
+  const postRequest = async (postData) => {
+    // state is set to true when form is submitting
+    setFormIsSubmitting(true);
+    try {
+      const response = await axios.post(url, postData);
+      console.log(response);
+      // after getting response from the database
+      setFormIsSubmitting(false);
+      setFormIsSubmitted(true);
+      emptyCart();
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.header);
+      } else {
+        setError(error.message);
+      }
+      setFormIsSubmitting(false);
+      setFormIsSubmitted(false);
+    }
+  };
+
+  // data for user info is collected from the checkoutform and ordered meals from the cart context and provided to the axios post request
+  const formPostRequestHandler = (userData) => {
+    const data = {
+      user: userData,
+      orderedItems: ctx.items,
+    };
+    // calling axios post request on form submission
+    postRequest(data);
+  };
 
   // Will change to true when order button is clicked. This function is passed to order button.
   const showForm = () => {
     setOrderButtonIsClicked(true);
   };
-
-  // Dummy data used to show cart items
-
-  // const addedToCart = [
-  //   {
-  //     id: '1',
-  //     name: 'sushi',
-  //     price: 22.99,
-  //     qtyAdded: 2,
-  //   },
-  //   {
-  //     id: '2',
-  //     name: 'Schnitzel',
-  //     price: 16.5,
-  //     qtyAdded: 5,
-  //   },
-  // ];
 
   // Updates the item quantity added from the cart. It updates the quantity by one.
   const addItemToCart = (item) => {
@@ -70,7 +99,10 @@ const Cart = (props) => {
     // div is applied here so that it only applies to the checkout form and not to the empty string.
     // otherwise div will be applied to the empty string and will be visible even when the order button is not clicked, since there is some padding applied to the div.
     <div className={classes.containerTwo}>
-      <CheckoutForm hideModal={props.hideModal} />
+      <CheckoutForm
+        onConfirm={formPostRequestHandler}
+        hideModal={props.hideModal}
+      />
     </div>
   ) : (
     ''
@@ -89,9 +121,11 @@ const Cart = (props) => {
   // helper class to style, when checkout form is shown after order button is clicked
   const helperClasses = orderButtonIsClicked ? `${classes.container}` : '';
 
-  return (
-    <Modal onClose={props.hideModal}>
+  // this is returned from the component..
+  const cartCheckoutHelper = (
+    <>
       {/* helperClasses is a container used to display cart Items and checkout form side by side as a flex container, when order button is clicked.
+      
     - this container has two divs inside it as flex items : containerOne and containerTwo
      */}
       <div className={helperClasses}>
@@ -107,8 +141,64 @@ const Cart = (props) => {
         {/* div on this is applied to the helper function 'checkOrderButtonIsClicked' above */}
         {checkOrderButtonIsClicked}
       </div>
-    </Modal>
+    </>
   );
+
+  if (formIsSubmitting) {
+    return (
+      <Modal>
+        <p
+          style={{
+            color: '#8a2b06',
+            textAlign: 'center',
+            fontSize: '1.5rem',
+            paddingTop: '0.5em',
+          }}
+        >
+          Your form is submitting...
+        </p>
+      </Modal>
+    );
+  }
+
+  if (formIsSubmitted) {
+    return (
+      <Modal onClose={props.hideModal}>
+        <p
+          style={{
+            color: '#8a2b06',
+            textAlign: 'center',
+            fontSize: '1.5rem',
+            paddingTop: '0.5em',
+          }}
+        >
+          Congrates, your form is submitted successfully. We will take care of
+          your orders.
+        </p>
+        <div className={classes.actions}>
+          <button onClick={props.hideModal}>Close</button>
+        </div>
+      </Modal>
+    );
+  }
+
+  if (error) {
+    return (
+      <Modal>
+        <p
+          style={{
+            textAlign: 'center',
+            fontSize: '1.5rem',
+            paddingTop: '0.5em',
+          }}
+        >
+          Sorry something went wrong. The form could not be submitted.
+        </p>
+      </Modal>
+    );
+  }
+
+  return <Modal onClose={props.hideModal}>{cartCheckoutHelper}</Modal>;
 };
 
 export default Cart;

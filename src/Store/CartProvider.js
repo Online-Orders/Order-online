@@ -90,6 +90,14 @@ const cartReducer = (state, action) => {
     };
   }
 
+  // change the cart items to empty array and amount to zero
+  if (action.type === 'EMPTY_CART') {
+    return {
+      totalAmount: 0,
+      items: [],
+    };
+  }
+
   return {
     initialState,
   };
@@ -113,12 +121,18 @@ const CartProvider = (props) => {
     dispatchCart({ type: 'REMOVE', id: id });
   };
 
+  // change the cart amount and items to zero when order items and user info is submitted and success message is sent.
+  const emptyCartHandler = () => {
+    dispatchCart({ type: 'EMPTY_CART' });
+  };
+
   // updating value of the provider with the current state
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeCartItemHandler,
+    emptyCart: emptyCartHandler,
   };
   return (
     //   value props passed to all the child components

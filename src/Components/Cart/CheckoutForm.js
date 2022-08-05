@@ -3,7 +3,6 @@ import CheckoutFormInput from '../UI/CheckoutFormInput';
 import classes from './CheckoutForm.module.css';
 
 const CheckoutForm = (props) => {
-  console.log(classes);
   //initializing the initial state for all the form inputs in single object, so that multiple form inputs can be controlled. Intially it is set to empty string.
   const [values, setValues] = useState({
     username: '',
@@ -82,7 +81,12 @@ const CheckoutForm = (props) => {
   // handle data when form is submitted
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(values);
+    const userDetails = {
+      username: values.username,
+      email: values.email,
+      birthday: values.birthday,
+    };
+    props.onConfirm(userDetails);
   };
 
   //  all the attribute for the form input is itreated from Inputs and passed to the CheckoutFormInput component, which is saved in variable formInputs.

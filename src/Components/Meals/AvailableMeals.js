@@ -14,7 +14,6 @@ const AvailableMeals = () => {
   const config = useMemo(
     () => ({
       url: 'https://order-online-a8c95-default-rtdb.firebaseio.com/meals.json',
-      method: 'get',
     }),
     []
   );
@@ -23,6 +22,7 @@ const AvailableMeals = () => {
 
   // useCallback is used to prevent infinite loop, as fucntions in javascript are object.
   const transformData = useCallback((mealData) => {
+    console.log(mealData);
     const loadMeals = [];
     for (const key in mealData) {
       loadMeals.push({
@@ -34,6 +34,8 @@ const AvailableMeals = () => {
     }
     setMeals(loadMeals);
   }, []);
+
+  console.log(allMeals);
 
   // custom hook useHttp returns isLoading, hasError and sendRequest which is destructured here.
   // custom hook useHttp is expexting two arguments "config" and function "transformData"

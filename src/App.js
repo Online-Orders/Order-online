@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import Header from './Components/Layout/Header';
 import Meals from './Components/Meals/Meals';
-import Cart from './Components/Cart/Cart';
 import CartProvider from './Store/CartProvider';
+import UserDetails from './Components/UserDetails/UserDetails';
+import { Routes, Route } from 'react-router-dom';
+import RouterLayout from './Components/RouterLayout/RouterLayout';
 
 function App() {
   const [modalIsShown, setModalIsShown] = useState(false);
@@ -18,9 +19,25 @@ function App() {
   };
   return (
     <CartProvider>
-      {!modalIsShown ? '' : <Cart hideModal={modalIsHidden} />}
-      <Header handleModalIsShown={modalIsVisible} />
-      <Meals />
+      {/* {!modalIsShown ? '' : <Cart />}
+      <Header /> */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <RouterLayout
+              hideModal={modalIsHidden}
+              handleModalIsShown={modalIsVisible}
+              modalIsShown={modalIsShown}
+            />
+          }
+        >
+          <Route index element={<Meals />} />
+          <Route path="users" element={<UserDetails />} />
+        </Route>
+      </Routes>
+      {/* <Meals /> */}
+      {/* <CustomerOrder /> */}
     </CartProvider>
   );
 }

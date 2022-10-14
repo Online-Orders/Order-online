@@ -4,6 +4,7 @@ import CartProvider from './Store/CartProvider';
 import UserDetails from './Components/UserDetails/UserDetails';
 import { Routes, Route } from 'react-router-dom';
 import RouterLayout from './Components/RouterLayout/RouterLayout';
+import ContactUs from './Components/ContactUs/ContactUs';
 
 function App() {
   const [modalIsShown, setModalIsShown] = useState(false);
@@ -34,6 +35,7 @@ function App() {
         >
           <Route index element={<Meals />} />
           <Route path="users" element={<UserDetails />} />
+          <Route path="contact" element={<ContactUs />} />
         </Route>
       </Routes>
       {/* <Meals /> */}

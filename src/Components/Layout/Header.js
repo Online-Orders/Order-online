@@ -17,6 +17,9 @@ const Header = (props) => {
           <Link className={classes.link} to="/users">
             Users
           </Link>
+          <Link className={classes.link} to="/contact">
+            Contact Us
+          </Link>
         </div>
         <HeaderCartButton showModal={props.showModal} />
       </nav>

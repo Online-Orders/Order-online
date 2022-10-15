@@ -14,8 +14,8 @@ const Header = (props) => {
           <Link className={classes.link} to="/">
             Meals
           </Link>
-          <Link className={classes.link} to="/users">
-            Users
+          <Link className={classes.link} to="/orders">
+            Customer Order
           </Link>
           <Link className={classes.link} to="/contact">
             Contact Us

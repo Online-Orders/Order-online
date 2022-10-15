@@ -34,7 +34,7 @@ function App() {
           }
         >
           <Route index element={<Meals />} />
-          <Route path="users" element={<UserDetails />} />
+          <Route path="orders" element={<UserDetails />} />
           <Route path="contact" element={<ContactUs />} />
         </Route>
       </Routes>

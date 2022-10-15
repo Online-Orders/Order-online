@@ -112,7 +112,13 @@ const Cart = (props) => {
   const orderAndCloseButtonAreVisible = !orderButtonIsClicked && (
     <div className={classes.actions}>
       {/* ternary operator to check if cartHasItem is true or false and only show Order button if it is true */}
+
       {cartHasItem ? <button onClick={showForm}>Order</button> : ''}
+      {!cartHasItem && (
+        <span className={classes.emptyCartMessage}>
+          Sorry, your cart is empty!
+        </span>
+      )}
       {/* closes the modal */}
       <button onClick={props.hideModal}>Close</button>
     </div>

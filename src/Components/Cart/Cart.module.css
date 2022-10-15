@@ -39,6 +39,11 @@
   text-align: right;
 }
 
+.emptyCartMessage {
+  color: red;
+  font-size: 1.2rem;
+}
+
 .actions button {
   font: inherit;
   cursor: pointer;

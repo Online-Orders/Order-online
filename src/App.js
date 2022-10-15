@@ -5,6 +5,7 @@ import UserDetails from './Components/UserDetails/UserDetails';
 import { Routes, Route } from 'react-router-dom';
 import RouterLayout from './Components/RouterLayout/RouterLayout';
 import ContactUs from './Components/ContactUs/ContactUs';
+import ErrorPage from './Components/Error/ErrorPage';
 
 function App() {
   const [modalIsShown, setModalIsShown] = useState(false);
@@ -36,6 +37,7 @@ function App() {
           <Route index element={<Meals />} />
           <Route path="orders" element={<UserDetails />} />
           <Route path="contact" element={<ContactUs />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
       {/* <Meals /> */}

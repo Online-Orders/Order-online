@@ -8,6 +8,11 @@
     animation: meals-appear 3s ease-out forwards;
 }
 
+.userList {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 @keyframes meals-appear {
     from {

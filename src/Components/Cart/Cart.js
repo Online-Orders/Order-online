@@ -53,6 +53,7 @@ const Cart = (props) => {
     const data = {
       user: userData,
       orderedItems: ctx.items,
+      totalAmount,
     };
     // calling axios post request on form submission
     postRequest(data);

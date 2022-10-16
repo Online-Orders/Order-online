@@ -9,17 +9,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10%;
+    padding: 0 3%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     z-index: 10;
 }
 
+.logoName{
+    font-size: 1.5rem;
+}
+
 .logo{
-    color: black;
-    padding: 0.5rem 1rem;
-    background: white;
-    border-radius: 60%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    color: burlywood;
+    text-transform: uppercase;
+    /* padding: 0.5rem 1rem; */
+    /* background: white; */
+    /* border-radius: 60%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
 }
 
 .main-image {
@@ -38,15 +43,55 @@
 
 .linksStyling {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
+    align-items: center;
 
 }
 .link {
     text-decoration: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .link:hover {
     color: burlywood;
+}
+
+
+@media only screen and (min-width: 37.5em) {
+    .link {
+            
+            font-size: 1.2rem;
+            
+        }
+}
+
+@media only screen and (min-width: 56.25em) {
+    .header {
+            
+            padding: 0 10%;
+            
+        }
+
+                .logoName {
+                    font-size: 2rem;
+                }
+
+                .linksStyling {
+                    
+                    gap: 2rem;
+        
+                }
+        
+                .link {
+                    
+                    font-size: 1.5rem;
+                    font-weight: 200;
+                }
+
+                                .link:hover {
+                                    color: burlywood;
+                                }
+    
 }

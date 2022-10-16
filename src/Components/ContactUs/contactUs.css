@@ -10,7 +10,7 @@
     padding: 2rem;
 }
 .contact__form__container {
-    width: 60%;
+    width: 90%;
     max-width: 80rem;
     text-align: center;
     background: #fff;
@@ -70,7 +70,6 @@
         padding: 0.7rem 3rem;
         border-radius: 0.4rem;
         cursor: pointer;
-        transition: var(--transition);
         text-align: center;
         letter-spacing: 0.2rem;
 }
@@ -79,4 +78,11 @@
     background-color: white;
     border:2px solid #8a2b06;
     color: black;
+}
+
+@media only screen and (min-width:56.25em){
+    .contact__form__container {
+            width: 60%;
+            max-width: 80rem;
+    }
 }

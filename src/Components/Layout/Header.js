@@ -8,17 +8,17 @@ const Header = (props) => {
     <>
       <nav className={classes.header}>
         <div className={classes.logo}>
-          <h2>Foodie</h2>
+          <h2 className={classes.logoName}>Foodie</h2>
         </div>
         <div className={classes.linksStyling}>
           <Link className={classes.link} to="/">
             Meals
           </Link>
           <Link className={classes.link} to="/orders">
-            Customer Order
+            Orders
           </Link>
           <Link className={classes.link} to="/contact">
-            Contact Us
+            Contact
           </Link>
         </div>
         <HeaderCartButton showModal={props.showModal} />

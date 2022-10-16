@@ -23,6 +23,7 @@
     margin-right: 0.1rem;
 }
 .cartText {
+    display: none;
     font-size: 0.8rem;
 }
 
@@ -65,20 +66,27 @@
     }
 }
 
+@media only screen and (max-width: 28em) {
+    .button {
+            padding: 0;
+    }
+
+    .badge {
+        background: none;
+            padding: 0.25rem 0.4rem;
+        }
+
+    .icon {
+        width: 1.2rem;  
+        height: 1rem;
+       }
+}
 
 @media only screen and (min-width: 56.25em) {
     .button {
-            cursor: pointer;
-            font: inherit;
-            border: none;
-            background-color: #4d1601;
-            color: white;
+            
             padding: 0.75rem 3rem;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-radius: 25px;
-            font-weight: bold;
+            
         }
 
                 .icon {
@@ -86,43 +94,22 @@
                     height: 1.35rem;
                     margin-right: 0.5rem;
                 }
-                                .cartText {
-                                    font-size: 1rem;
-                                }
+                               
+                .cartText {
+                     display: inline;
+                    font-size: 1rem;
+            }
 
+                                                   
 
                    .badge {
-                             background-color: #b94517;
-                                    padding: 0.25rem 1rem;
-                                    border-radius: 25px;
-                                    margin-left: 1rem;
-                                    font-weight: bold;
-                        }
+                        background-color: #b94517;
+                        padding: 0.25rem 1rem;
+                        border-radius: 25px;
+                        margin-left: 1rem;
+                        font-weight: bold;
+                    }
     
 
-                                                .bump {
-                                                    animation: bump 300ms ease-out;
-                                                }
-                        
-                                                @keyframes bump {
-                                                    0% {
-                                                        transform: scale(1);
-                                                    }
-                        
-                                                    10% {
-                                                        transform: scale(0.9);
-                                                    }
-                        
-                                                    30% {
-                                                        transform: scale(1.1);
-                                                    }
-                        
-                                                    50% {
-                                                        transform: scale(1.15);
-                                                    }
-                        
-                                                    100% {
-                                                        transform: scale(1);
-                                                    }
-                                                }
+                                                
 }

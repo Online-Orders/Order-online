@@ -58,8 +58,29 @@
     color: burlywood;
 }
 
+@media only screen and (max-width:28em) {
 
-@media only screen and (min-width: 37.5em) {
+    .header {
+        padding: 0 1%;
+    }
+
+    .logoName {
+            font-size: 1.3rem;
+        }
+
+.link {
+        text-decoration: none;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+
+
+@media only screen and (min-width: 28em) {
+
+    
+
     .link {
             
             font-size: 1.2rem;

@@ -1,5 +1,5 @@
 import classes from './Header.module.css';
-import mealImage from '../../assets/meals.jpg';
+import mealImage from '../../assets/meals-2.jpg';
 import HeaderCartButton from './HeaderCartButton';
 import { Link } from 'react-router-dom';
 
